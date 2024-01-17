@@ -6,7 +6,7 @@
 /*   By: pineau <pineau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:50:01 by pineau            #+#    #+#             */
-/*   Updated: 2024/01/17 15:48:34 by pineau           ###   ########.fr       */
+/*   Updated: 2024/01/17 17:22:57 by pineau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <ostream>
 #include <iostream>
 #include <string>
+#include <cctype>
 
 Contact::Contact(void) {
 	this->_is_full = false;
@@ -25,28 +26,44 @@ Contact::~Contact(void) {
 	return ;
 }
 
+int	check_printable(std::string str)
+{
+	int i = 0;
+	while (str[i])
+	{
+		if (std::isprint(str[i]))
+			i++;
+		else
+		{
+			return (0);
+			break;
+		}
+	}
+	return (1);
+}
+
 void	Contact::add_contact(void) {
 	std::cout << "First name: ";
 	getline(std::cin, this->_first_name);
-	while (_first_name.empty())
+	while (_first_name.empty() || !check_printable(_first_name))
 	{
-		std::cout << "First name can't be empty" << std::endl;
+		std::cout << "First name can't be empty or composed of invalid characters" << std::endl;
 		std::cout << "First name: ";
 		getline(std::cin, this->_first_name);
 	}
 	std::cout << "Last name: ";
 	getline(std::cin, this->_last_name);
-	while (_last_name.empty())
+	while (_last_name.empty() || !check_printable(_last_name))
 	{
-		std::cout << "Last name can't be empty" << std::endl;
+		std::cout << "Last name can't be empty or composed of invalid characters" << std::endl;
 		std::cout << "Last name: ";
 		getline(std::cin, this->_last_name);
 	}
 	std::cout << "Nickname: ";
 	getline(std::cin, this->_nickname);
-	while (_nickname.empty())
+	while (_nickname.empty() || !check_printable(_nickname))
 	{
-		std::cout << "Nickname can't be empty" << std::endl;
+		std::cout << "Nickname can't be empty or composed of invalid characters" << std::endl;
 		std::cout << "Nickname: ";
 		getline(std::cin, this->_nickname);
 	}
@@ -66,7 +83,7 @@ void	Contact::add_contact(void) {
 		{
 			if (!std::isdigit(_phone_number[i]))
 			{
-				std::cout << "Phone number can't contain letters" << std::endl;
+				std::cout << "Phone number can only contain digits" << std::endl;
 				i = 0;
 				check = 1;
 				break;
@@ -79,9 +96,9 @@ void	Contact::add_contact(void) {
 	}
 	std::cout << "Darkest secret: ";
 	getline(std::cin, this->_darkest_secret);
-	while (_darkest_secret.empty())
+	while (_darkest_secret.empty() || !check_printable(_darkest_secret))
 	{
-		std::cout << "Darkest secret can't be empty" << std::endl;
+		std::cout << "Darkest secret can't be empty or composed of invalid characters" << std::endl;
 		std::cout << "Darkest secret: ";
 		getline(std::cin, this->_darkest_secret);
 	}

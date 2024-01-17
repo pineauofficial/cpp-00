@@ -6,7 +6,7 @@
 /*   By: pineau <pineau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:50:05 by pineau            #+#    #+#             */
-/*   Updated: 2024/01/17 15:54:09 by pineau           ###   ########.fr       */
+/*   Updated: 2024/01/17 17:45:49 by pineau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,19 @@
 #include <ostream>
 #include <iostream>
 #include <string>
+#include <cstdlib>
+#include <iomanip>
 
-//faire le roll a 8 et le ctrl d; 
+
+//faire le ctrl d; 
 
 PhoneBook::PhoneBook(void) {
-	std::cout << "constructor called" << std::endl;
+	// std::cout << "constructor called" << std::endl;
 	return ;
 }
 
 PhoneBook::~PhoneBook(void) {
-	std::cout << "destructor called" << std::endl;
+	// std::cout << "destructor called" << std::endl;
 	return ;
 }
 
@@ -35,10 +38,12 @@ void	PhoneBook::run(void) {
 	std::cout << "Welcome to your phonebook" << std::endl;
 	while (1)
 	{
+		if (i == 8)
+			i = 0;
 		std::cout << "Select ADD, SEARCH or EXIT" << std::endl;
 		std::getline(std::cin, cmd);
-		// if (std::cin.eof())
-		// 	std::cout << "Exiting due to user request (CTRL+D) or input error" << std::endl;
+		if (std::cin.eof())
+			std::cout << "Exiting due to user request (CTRL+D) or input error" << std::endl;
 		if (cmd == "ADD")
 		{
 			tab[i].add_contact();
@@ -69,36 +74,37 @@ void	PhoneBook::search(Contact *tab) {
 	std::cout << "---------------------------------------------" << std::endl;
 	std::cout << "|     Index|First name| Last name|  Nickname|" << std::endl;
 	std::cout << "|----------|----------|----------|----------|" << std::endl;
-	while (i < 8)
+	while(tab[i]._is_full == true && i < 8)
 	{
 		if (tab[i]._is_full == true)
 		{
-			std::cout << "|---------" << i << "|";
+			std::cout << "|         " << i << "|";
 			nbr_spaces(tab[i]._first_name);
 			if (tab[i]._first_name.length() > 10)
 				std::cout << tab[i]._first_name.substr(0, 9) << ".|";
 			else
 				std::cout << tab[i]._first_name << "|";
 			nbr_spaces(tab[i]._last_name);
-			std::cout << tab[i]._last_name << "|";
+			if (tab[i]._last_name.length() > 10)
+				std::cout << tab[i]._last_name.substr(0, 9) << ".|";
+			else
+				std::cout << tab[i]._last_name << "|";
 			nbr_spaces(tab[i]._nickname);
-			std::cout << tab[i]._nickname << "|" << std::endl;
+			if (tab[i]._nickname.length() > 10)
+				std::cout << tab[i]._nickname.substr(0, 9) << ".|" << std::endl;
+			else
+				std::cout << tab[i]._nickname << "|" << std::endl;
 		}
 		i++;
 	}
 	std::cout << "---------------------------------------------" << std::endl << std::endl; 
 }
 
-void	PhoneBook::nbr_spaces(std::string str) {
-	
-	int length = 0;
-	while (str[length])
-		length++;
-	int j = 10 - length;
-	while (j > 0)
-	{
-		std::cout << " ";
-		j--;
-	}
-	return ;
+void PhoneBook::nbr_spaces(std::string &str) {
+    int length = str.length();
+    int spaces = std::max(0, 10 - length);
+
+    for (int i = 0; i < spaces; ++i) {
+        std::cout << " ";
+    }
 }
