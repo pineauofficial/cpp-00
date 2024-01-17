@@ -1,0 +1,103 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pineau <pineau@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/15 12:50:01 by pineau            #+#    #+#             */
+/*   Updated: 2024/01/17 15:48:34 by pineau           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "PhoneBook.hpp"
+#include "Contact.hpp"
+#include <ostream>
+#include <iostream>
+#include <string>
+
+Contact::Contact(void) {
+	this->_is_full = false;
+	return ;
+}
+
+Contact::~Contact(void) {
+	return ;
+}
+
+void	Contact::add_contact(void) {
+	std::cout << "First name: ";
+	getline(std::cin, this->_first_name);
+	while (_first_name.empty())
+	{
+		std::cout << "First name can't be empty" << std::endl;
+		std::cout << "First name: ";
+		getline(std::cin, this->_first_name);
+	}
+	std::cout << "Last name: ";
+	getline(std::cin, this->_last_name);
+	while (_last_name.empty())
+	{
+		std::cout << "Last name can't be empty" << std::endl;
+		std::cout << "Last name: ";
+		getline(std::cin, this->_last_name);
+	}
+	std::cout << "Nickname: ";
+	getline(std::cin, this->_nickname);
+	while (_nickname.empty())
+	{
+		std::cout << "Nickname can't be empty" << std::endl;
+		std::cout << "Nickname: ";
+		getline(std::cin, this->_nickname);
+	}
+	while (1)
+	{
+		int check = 0;
+		int i = 0;
+		std::cout << "Phone number: ";
+		getline(std::cin, this->_phone_number);
+		while (_phone_number.empty())
+		{
+			std::cout << "Phone number can't be empty" << std::endl;
+			std::cout << "Phone number: ";
+			getline(std::cin, this->_phone_number);
+		}
+		while (i < (int)_phone_number.length())
+		{
+			if (!std::isdigit(_phone_number[i]))
+			{
+				std::cout << "Phone number can't contain letters" << std::endl;
+				i = 0;
+				check = 1;
+				break;
+			}
+			else
+				i++;
+		}
+		if (check == 0)
+			break;
+	}
+	std::cout << "Darkest secret: ";
+	getline(std::cin, this->_darkest_secret);
+	while (_darkest_secret.empty())
+	{
+		std::cout << "Darkest secret can't be empty" << std::endl;
+		std::cout << "Darkest secret: ";
+		getline(std::cin, this->_darkest_secret);
+	}
+	std::cout << std:: endl <<" > Contact added" << std::endl << std::endl;
+	this->_is_full = true;
+}
+
+void	Contact::display_contact(void) {
+	if (_is_full == false)
+		std::cout << "Invalid index" << std::endl;
+	else
+	{
+		std::cout << "First name: " << _first_name << std::endl;
+		std::cout << "Last name: " << _last_name << std::endl;
+		std::cout << "Nickname: " << _nickname << std::endl;
+		std::cout << "Phone number: " << _phone_number << std::endl;
+		std::cout << "Darkest secret: " << _darkest_secret << std::endl << std::endl;
+	}
+}
