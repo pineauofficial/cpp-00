@@ -6,7 +6,7 @@
 /*   By: pineau <pineau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:50:05 by pineau            #+#    #+#             */
-/*   Updated: 2024/01/17 17:45:49 by pineau           ###   ########.fr       */
+/*   Updated: 2024/01/19 13:54:20 by pineau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@
 #include <string>
 #include <cstdlib>
 #include <iomanip>
-
-
-//faire le ctrl d; 
 
 PhoneBook::PhoneBook(void) {
 	// std::cout << "constructor called" << std::endl;
@@ -42,8 +39,11 @@ void	PhoneBook::run(void) {
 			i = 0;
 		std::cout << "Select ADD, SEARCH or EXIT" << std::endl;
 		std::getline(std::cin, cmd);
-		if (std::cin.eof())
-			std::cout << "Exiting due to user request (CTRL+D) or input error" << std::endl;
+		if (std::cin.eof()) {
+            return ;
+        }
+		// if (std::cin.eof())
+		// 	std::cout << "Exiting due to user request (CTRL+D) or input error" << std::endl;
 		if (cmd == "ADD")
 		{
 			tab[i].add_contact();
