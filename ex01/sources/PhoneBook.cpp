@@ -6,7 +6,7 @@
 /*   By: pineau <pineau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:50:05 by pineau            #+#    #+#             */
-/*   Updated: 2024/01/19 13:54:20 by pineau           ###   ########.fr       */
+/*   Updated: 2024/01/19 19:29:14 by pineau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ void	PhoneBook::run(void) {
 		if (std::cin.eof()) {
             return ;
         }
-		// if (std::cin.eof())
-		// 	std::cout << "Exiting due to user request (CTRL+D) or input error" << std::endl;
 		if (cmd == "ADD")
 		{
 			tab[i].add_contact();

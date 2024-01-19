@@ -6,7 +6,7 @@
 /*   By: pineau <pineau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:38:02 by pineau            #+#    #+#             */
-/*   Updated: 2024/01/17 17:37:59 by pineau           ###   ########.fr       */
+/*   Updated: 2024/01/19 19:26:45 by pineau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class PhoneBook
 		
 		void		run(void);
 	private:
-		Contact		tab[7];
+		Contact		tab[8];
 		void		search(Contact *tab);
 		void		nbr_spaces(std::string &str);
 };
