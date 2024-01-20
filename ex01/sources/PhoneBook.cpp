@@ -6,7 +6,7 @@
 /*   By: pineau <pineau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:50:05 by pineau            #+#    #+#             */
-/*   Updated: 2024/01/19 19:29:14 by pineau           ###   ########.fr       */
+/*   Updated: 2024/01/20 16:49:37 by pineau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	PhoneBook::run(void) {
 		if (cmd == "ADD")
 		{
 			tab[i].add_contact();
-			if (tab[i]._is_full == true)
+			if (tab[i].is_full() == true)
 				i++;
 		}
 		else if (cmd == "SEARCH")
@@ -72,33 +72,33 @@ void	PhoneBook::search(Contact *tab) {
 	std::cout << "---------------------------------------------" << std::endl;
 	std::cout << "|     Index|First name| Last name|  Nickname|" << std::endl;
 	std::cout << "|----------|----------|----------|----------|" << std::endl;
-	while(tab[i]._is_full == true && i < 8)
+	while(tab[i].is_full() == true && i < 8)
 	{
-		if (tab[i]._is_full == true)
+		if (tab[i].is_full())
 		{
 			std::cout << "|         " << i << "|";
-			nbr_spaces(tab[i]._first_name);
-			if (tab[i]._first_name.length() > 10)
-				std::cout << tab[i]._first_name.substr(0, 9) << ".|";
+			nbr_spaces(tab[i].get_first_name());
+			if (tab[i].get_first_name().length() > 10)
+				std::cout << tab[i].get_first_name().substr(0, 9) << ".|";
 			else
-				std::cout << tab[i]._first_name << "|";
-			nbr_spaces(tab[i]._last_name);
-			if (tab[i]._last_name.length() > 10)
-				std::cout << tab[i]._last_name.substr(0, 9) << ".|";
+				std::cout << tab[i].get_first_name() << "|";
+			nbr_spaces(tab[i].get_last_name());
+			if (tab[i].get_last_name().length() > 10)
+				std::cout << tab[i].get_last_name().substr(0, 9) << ".|";
 			else
-				std::cout << tab[i]._last_name << "|";
-			nbr_spaces(tab[i]._nickname);
-			if (tab[i]._nickname.length() > 10)
-				std::cout << tab[i]._nickname.substr(0, 9) << ".|" << std::endl;
+				std::cout << tab[i].get_last_name() << "|";
+			nbr_spaces(tab[i].get_nickname());
+			if (tab[i].get_nickname().length() > 10)
+				std::cout << tab[i].get_nickname().substr(0, 9) << ".|" << std::endl;
 			else
-				std::cout << tab[i]._nickname << "|" << std::endl;
+				std::cout << tab[i].get_nickname() << "|" << std::endl;
 		}
 		i++;
 	}
 	std::cout << "---------------------------------------------" << std::endl << std::endl; 
 }
 
-void PhoneBook::nbr_spaces(std::string &str) {
+void PhoneBook::nbr_spaces(std::string str) {
     int length = str.length();
     int spaces = std::max(0, 10 - length);
 

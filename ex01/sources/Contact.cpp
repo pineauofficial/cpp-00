@@ -6,7 +6,7 @@
 /*   By: pineau <pineau@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:50:01 by pineau            #+#    #+#             */
-/*   Updated: 2024/01/19 13:56:34 by pineau           ###   ########.fr       */
+/*   Updated: 2024/01/20 16:50:20 by pineau           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,3 +136,32 @@ void	Contact::display_contact(void) {
 		std::cout << "Darkest secret: " << _darkest_secret << std::endl << std::endl;
 	}
 }
+
+bool	Contact::is_full(void) {
+	return (this->_is_full);
+}
+
+int Contact::get_index(void) {
+	return (this->index);
+}
+
+std::string Contact::get_first_name(void) {
+	return (this->_first_name);
+}
+
+std::string Contact::get_last_name(void) {
+	return (this->_last_name);
+}
+
+std::string Contact::get_phone_number(void) {
+	return (this->_phone_number);
+}
+
+std::string Contact::get_darkest_secret(void)  {
+	return (this->_darkest_secret);
+}
+
+std::string Contact::get_nickname(void)  {
+	return (this->_nickname);
+}	
+
